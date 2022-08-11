@@ -8,13 +8,19 @@ Install the [Nix package manager](https://nixos.org/download.html#download-nix).
 
 ## Usage
 
-Launch a Zookeeper and Kafka locally:
+Run Zookeeper and Kafka:
 
 ```
-./launch-kafka.sh
+nix run 'git+ssh://git@bitbucket.intra.nexthink.com:7999/~dawagner/local-kafka.git?ref=main'
 ```
 
-Use the official Kafka tools:
+If you cloned the repo you can also start everything from the local repo:
+
+```
+nix run
+```
+
+Then, use the official Kafka tools:
 
 ```
 kafka-topics.sh --bootstrap-server localhost:9092 --list
