@@ -11,7 +11,7 @@ Install the [Nix package manager](https://nixos.org/download.html#download-nix).
 Run Zookeeper and Kafka:
 
 ```
-nix run 'git+ssh://git@bitbucket.intra.nexthink.com:7999/~dawagner/local-kafka.git?ref=main'
+nix run 'git+ssh://git@bitbucket.intra.nexthink.com:7999/~dawagner/local-kafka.git'
 ```
 
 If you cloned the repo you can also start everything from the local repo:
