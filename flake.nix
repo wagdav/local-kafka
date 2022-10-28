@@ -15,7 +15,7 @@
         ZOO_LOG_DIR=$(pwd) ${pkgs.zookeeper}/bin/zkServer.sh --config ${self} start
 
         # Start Kafka
-        ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${pkgs.apacheKafka}/config/server.properties
+        ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${./server.properties}
     '';
 
    in
