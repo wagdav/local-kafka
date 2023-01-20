@@ -21,6 +21,12 @@
    in
 
    {
+     devShells.default = with pkgs; mkShell {
+       buildInputs = [
+         apacheKafka
+       ];
+     };
+
      apps.default = with pkgs; {
        type = "app";
        program = "${script}/bin/launch-kafka";

@@ -23,5 +23,5 @@ nix run
 Then, use the official Kafka tools:
 
 ```
-kafka-topics.sh --bootstrap-server localhost:9092 --list
+nix develop --command kafka-topics.sh --bootstrap-server localhost:9092 --list
 ```
