@@ -11,7 +11,7 @@
 
     script = pkgs.writeShellScriptBin "launch-kafka" ''
         # Start Zookeeper
-        trap "${pkgs.zookeeper}/bin/zkServer.sh --config ${self} stop" SIGINT
+        trap "${pkgs.zookeeper}/bin/zkServer.sh --config ${self} stop" EXIT
         ZOO_LOG_DIR=$(pwd) ${pkgs.zookeeper}/bin/zkServer.sh --config ${self} start
 
         # Start Kafka
