@@ -9,7 +9,7 @@
 
     pkgs = nixpkgs.legacyPackages.${system};
 
-    script = pkgs.writeScriptBin "launch-kafka" ''
+    script = pkgs.writeShellScriptBin "launch-kafka" ''
         # Start Zookeeper
         trap "${pkgs.zookeeper}/bin/zkServer.sh --config ${self} stop" SIGINT
         ZOO_LOG_DIR=$(pwd) ${pkgs.zookeeper}/bin/zkServer.sh --config ${self} start
