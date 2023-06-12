@@ -8,10 +8,10 @@ Install the [Nix package manager](https://nixos.org/download.html#download-nix).
 
 ## Usage
 
-Run Zookeeper and Kafka:
+Run Zookeeper and a Kafka:
 
 ```
-nix run 'git+ssh://git@bitbucket.intra.nexthink.com:7999/~dawagner/local-kafka.git'
+nix run 'github:wagdav/local-kafka'
 ```
 
 If you cloned the repo you can also start everything from the local repo:
