@@ -9,22 +9,22 @@
 
         pkgs = nixpkgs.legacyPackages.${system};
 
-        script = pkgs.writeShellScriptBin "launch-kafka" ''
+        broker-1 = pkgs.writeShellScriptBin "launch-zookeeper-and-broker" ''
           set -e
           # Start Zookeeper
           trap "${pkgs.zookeeper}/bin/zkServer.sh --config ${self} stop" EXIT
           ZOO_LOG_DIR=$(pwd) ${pkgs.zookeeper}/bin/zkServer.sh --config ${self} start
 
           # Start Kafka
-          ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${./broker-0.properties}
-        '';
-
-        broker-1 = pkgs.writeShellScriptBin "launch-broker" ''
           ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${./broker-1.properties}
         '';
 
         broker-2 = pkgs.writeShellScriptBin "launch-broker" ''
           ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${./broker-2.properties}
+        '';
+
+        broker-3 = pkgs.writeShellScriptBin "launch-broker" ''
+          ${pkgs.apacheKafka}/bin/kafka-server-start.sh ${./broker-3.properties}
         '';
 
       in
@@ -36,19 +36,21 @@
           ];
         };
 
-        apps.default = with pkgs; {
-          type = "app";
-          program = "${script}/bin/launch-kafka";
-        };
+        apps.default = self.apps.${system}.broker-1;
 
         apps.broker-1 = with pkgs; {
           type = "app";
-          program = "${broker-1}/bin/launch-broker";
+          program = "${broker-1}/bin/launch-zookeeper-and-broker";
         };
 
         apps.broker-2 = with pkgs; {
           type = "app";
           program = "${broker-2}/bin/launch-broker";
+        };
+
+        apps.broker-3 = with pkgs; {
+          type = "app";
+          program = "${broker-3}/bin/launch-broker";
         };
       });
 }

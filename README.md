@@ -30,7 +30,7 @@ nix develop --command kafka-topics.sh --bootstrap-server localhost:9092 --list
 
 Run the following commands in three separate terminal windows
 ```
-nix run github:wagdav/local-kafka           # ZooKeeper and broker-0
-nix run github:wagdav/local-kafka#broker-1  # broker-1
+nix run github:wagdav/local-kafka           # ZooKeeper and broker-1
 nix run github:wagdav/local-kafka#broker-2  # broker-2
+nix run github:wagdav/local-kafka#broker-3  # broker-3
 ```
